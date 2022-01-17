@@ -43,6 +43,6 @@ void Render::Erase()
 
 void Render::updateOutput()
 {
-    //Erase();
+    Erase();
     DrawFrame();
 }

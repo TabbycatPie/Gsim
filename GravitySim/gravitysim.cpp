@@ -12,6 +12,10 @@
 #include<QPushButton>
 #include <QKeyEvent>
 Render* pub_render;
+void updateRender(){
+    pub_render->updateOutput();
+}
+
 GravitySim::GravitySim(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::GravitySim)
@@ -21,7 +25,7 @@ GravitySim::GravitySim(QWidget *parent)
     Camera2D* cam = new Camera2D(new Rect(new Vector2D(0,0),1000,1000));
     Scene* s = new Scene(new Rect(new Vector2D(0,0),100000,100000));
     pub_render = new Render(cam,s,ui->canvas);
-    //cam->setCallback(pub_render->updateOutput);
+    cam->setCallback(updateRender);
     //sun
     PhysicsProperty *pp = new PhysicsProperty(new Vector2D(0,0),5,new Vector2D(300,300),new Vector2D(0,0));
     Circle* c = new Circle(new Vector2D(100,100),20,true);
